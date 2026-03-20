@@ -1,0 +1,241 @@
+:root {
+    --pearl-blue: #224D9A;
+    --pearl-green: #027A48;
+    --text-soft: rgba(255, 255, 255, 0.9);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #111; 
+    font-family: 'Inter', sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+/* --- FULL PAGE ANIMATED COLLAGE BACKGROUND --- */
+.collage-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex; 
+    gap: 5px; 
+    z-index: -2;
+    overflow: hidden;
+    background: #111;
+}
+
+.collage-track {
+    display: grid;
+    grid-template-rows: repeat(4, calc(25vh - 3.75px));
+    grid-auto-columns: 15vw; 
+    grid-auto-flow: column dense; 
+    gap: 5px;
+    height: 100vh;
+    width: max-content;
+    flex-shrink: 0;
+    
+    /* Increased time to 210s to match the much longer track of 35 items */
+    animation: moveRightToLeft 210s linear infinite; 
+}
+
+@keyframes moveRightToLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); } 
+}
+
+.collage-track img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6; 
+}
+
+/* Sizing Modifiers for Different Photo Sizes */
+.span-2x2 { grid-row: span 2; grid-column: span 2; } /* Large Square */
+.span-row-2 { grid-row: span 2; } /* Tall Vertical */
+.span-col-2 { grid-column: span 2; } /* Wide Horizontal */
+
+
+/* --- FULL PAGE BLACK TINT OVERLAY WITH BORDERS --- */
+.collage-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.45); 
+    z-index: -1; 
+    /* Black borders at the top and bottom */
+    border-top: 15px solid #000;
+    border-bottom: 15px solid #000;
+}
+
+/* Main Layout Positioning */
+.main-layout {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    padding: 20px 40px;
+}
+
+/* Grid Layout */
+.panels-container {
+    display: grid;
+    grid-template-columns: .9fr 1fr;
+    gap: 60px; 
+    width: 100%;
+    max-width: 1250px;
+    align-items: center;
+}
+
+
+/* === LEFT PANEL === */
+.left-panels {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+
+/* --- CENTERED INFO BOX CONTAINER --- */
+.info-container-centered {
+    position: relative;
+    z-index: 2; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.barely-glass-box {
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 15px;
+    padding: 35px 40px;
+    width: 85%; 
+    max-width: 500px; 
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#info-title {
+    font-size: 1.8rem;
+    font-weight: 700; 
+    color: #fff;
+    margin: 0 0 15px 0;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+#info-desc {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+
+/* === RIGHT SIDE FORM BOX === */
+.glass-box {
+    background: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(20px);
+    border-radius: 25px; 
+    border: 1px solid rgba(255, 255, 255, 0.25); 
+    padding: 50px 40px; 
+    min-height: 630px; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-box {
+    max-width: 550px; 
+    margin-left: 20px; 
+    margin-right: auto; 
+    width: 100%;
+}
+
+.form-logo-container {
+    width: 100%; 
+    background: rgba(255, 255, 255, 0.25); 
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px; 
+    padding: 15px;
+    margin-bottom: 35px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 10px rgba(255,255,255,0.1), 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.hd-logo { 
+    height: 70px; 
+    width: auto; 
+    max-width: 100%;
+    object-fit: contain; 
+    display: block; 
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15)); 
+}
+
+.input-group { margin-bottom: 20px; } 
+.input-group label { display: block; font-size: 0.85rem; color: var(--text-soft); margin-bottom: 8px; font-weight: 500;}
+.input-group input {
+    width: 100%; 
+    padding: 14px 16px; 
+    background: rgba(255,255,255,0.15); 
+    border: 1px solid rgba(255,255,255,0.4); border-radius: 12px;
+    color: white; font-size: 1rem; transition: 0.3s;
+}
+.input-group input::placeholder { color: rgba(255,255,255,0.7); }
+.input-group input:focus { border-color: #fff; outline: none; background: rgba(255,255,255,0.25); }
+
+.login-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; }
+.forgot { color: var(--text-soft); font-size: 0.85rem; text-decoration: none; }
+.forgot:hover { text-decoration: underline; color: #fff;}
+
+.submit-btn {
+    background: var(--pearl-green); color: white; border: none;
+    padding: 12px 35px; border-radius: 8px; font-weight: 600; font-size: 0.95rem;
+    cursor: pointer; box-shadow: 0 4px 15px rgba(2, 122, 72, 0.35);
+    transition: transform 0.2s, background 0.2s;
+}
+.submit-btn:hover { transform: translateY(-2px); background: #038c53;}
+
+.bottom-nav { margin-top: 35px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.glass-btn {
+    background: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    color: white; 
+    padding: 8px 18px; 
+    border-radius: 20px; 
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    text-decoration: none; 
+}
+.glass-btn:hover { 
+    background: rgba(255, 255, 255, 0.3); 
+    border-color: #fff; 
+    transform: translateY(-2px);
+}
